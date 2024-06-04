@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .product {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .product img {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+        .product-info {
+            flex-grow: 1;
+        }
+        .product-info h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .product-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>마이페이지</h1>
+        <h2>구매한 상품</h2>
+        <div id="productList">
+            <!-- 여기에 제품이 동적으로 추가됩니다. -->
+        </div>
+    </div>
+
+    <script>
+        // 구매한 상품 정보 배열
+        var products = [
+            { name: "에어팟 프로", price: "$249", image: "https://via.placeholder.com/100" },
+            { name: "아이폰 13 Pro", price: "$1099", image: "https://via.placeholder.com/100" }
+            // 필요에 따라 추가적인 상품 정보를 배열에 추가할 수 있습니다.
+        ];
+
+        // 페이지 로드 시 제품 표시
+        window.onload = function() {
+            displayProducts();
+        };
+
+        // 제품을 HTML에 추가하는 함수
+        function displayProducts() {
+            var productList = document.getElementById("productList");
+
+            products.forEach(function(product) {
+                var productDiv = document.createElement("div");
+                productDiv.classList.add("product");
+
+                var img = document.createElement("img");
+                img.src = product.image;
+                img.alt = "Product Image";
+
+                var productInfoDiv = document.createElement("div");
+                productInfoDiv.classList.add("product-info");
+
+                var productName = document.createElement("h3");
+                productName.textContent = "상품 이름: " + product.name;
+
+                var productPrice = document.createElement("p");
+                productPrice.textContent = "가격: " + product.price;
+
+                productInfoDiv.appendChild(productName);
+                productInfoDiv.appendChild(productPrice);
+
+                productDiv.appendChild(img);
+                productDiv.appendChild(productInfoDiv);
+
+                productList.appendChild(productDiv);
+            });
+        }
+    </script>
+</body>
+</html>
